@@ -4,14 +4,12 @@ $Boxstarter.NoPassword=$false # Is this a machine with no login password?
 $Boxstarter.AutoLogin=$true # Save my password securely and auto-login after a reboot
 
 # Basic setup
-Set-ExplorerOptions -showHidenFilesFoldersDrives -showProtectedOSFiles -showFileExtensions
+Set-ExplorerOptions -showHidenFilesFoldersDrives -showFileExtensions
 Disable-UAC # We re-enable at end of script
 Set-TaskbarOptions -Size Small
-
 if (Test-PendingReboot) { Invoke-Reboot }
 
 # Update Windows and reboot if necessary
-Start-Service -Name wuauserv
 Install-WindowsUpdate -AcceptEula
 if (Test-PendingReboot) { Invoke-Reboot }
 
