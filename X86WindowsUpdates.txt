@@ -10,8 +10,6 @@ Set-TaskbarOptions -Size Small
 
 if (Test-PendingReboot) { Invoke-Reboot }
 
-Install-WindowsUpdate -getUpdatesFromMS -AcceptEula
-
 # Update Windows and reboot if necessary
 Install-WindowsUpdate -AcceptEula
 if (Test-PendingReboot) { Invoke-Reboot }
