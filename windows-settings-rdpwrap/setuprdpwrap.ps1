@@ -85,6 +85,8 @@ trap
 	    New-Item "$RDPPath\RDPSetup.bat" -type file -force -value "@echo off
 	    TIMEOUT 120
 	    start /min powershell -executionpolicy bypass $RDPPath\RDPSetup.ps1 -AdminUsername $AdminUsername -AdminPassword $AdminPassword"
+	    
+	    #Copy Files required
 	    Copy-Item .\RDPSetup.ps1 -Destination $RDPPath
 	    Copy-Item .\RDPConf.exe -Destination $RDPPath
 	    Copy-Item .\RDPWInst.exe -Destination $RDPPath
