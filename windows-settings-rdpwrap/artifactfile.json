@@ -1,0 +1,47 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/azure-devtestlab/master/schemas/2015-01-01/dtlArtifacts.json",
+  "title": "Workaround for Automation Desktop Resolution on Desktop O/S's",
+  "publisher": "Sage",
+  "description": "Allows RPD connection to Windows desktop machines from within the machine itself.  Used as a workaround to the 1024 * 768 screen resolution problem.",
+  "iconUri": "https://www.sage.com/themes/group/img/sage-logo-brilliant-green.svg",
+  "targetOsType": "Windows",
+    "tags": [
+      "RDP"
+  ],
+    "parameters": {
+	"adminUsername": {
+      "type": "string",
+      "displayName": "Administrator Account",
+      "description": "The Administrator account you selected when creating the VM which will run any automation.",
+      "defaultValue": "Admin",
+      "allowEmpty": false
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "displayName": "Administrator Password",
+      "description": "The password for the administrator account you used on creating the VM that will run any automation.",
+      "allowEmpty": false
+    },
+	"rdpUsername": {
+      "type": "string",
+      "displayName": "RDP User Account",
+      "description": "The username used to create the RDP session",
+      "defaultValue": "RDPUser",
+      "allowEmpty": false
+    },
+    "rdpPassword": {
+      "type": "securestring",
+      "displayName": "RDP User Password",
+      "description": "The password for the RDP user account.",
+      "allowEmpty": false
+    }
+},
+  "runCommand": {
+    "commandToExecute": "[concat('powershell.exe -ExecutionPolicy bypass \"& ./setuprdpwrap.ps1',' -AdminUsername ''', parameters('adminUsername'), ''' -AdminPassword ''', parameters('adminPassword'), '''-RDPUsername ''', parameters('rdpUsername'), ''' -RDPPassword ''', parameters('rdpPassword'), '''\"')]"
+  },
+    "postDeployActions": [
+      {
+        "action": "restart"
+      }
+]
+}
