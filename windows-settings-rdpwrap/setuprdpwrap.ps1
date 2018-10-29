@@ -96,7 +96,7 @@ trap
 	    $winVerString = (Get-WmiObject Win32_OperatingSystem).Caption
 	    Write-Output "Detected Windows Version: $winVerString"
 	    
-      #Install RDP Wrap
+      #Install RDP Wrap sourced from https://github.com/stascorp/rdpwrap
 	    Write-Host "Installing Workaround @ $(Get-Date)"
 	    #& .\install.bat
 	    Start-Process -FilePath ".\RDPWInst.exe" -ArgumentList "-i -o" -Verb runas -Wait
